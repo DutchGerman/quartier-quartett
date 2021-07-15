@@ -15,6 +15,6 @@ export default class Box extends Vue {}
 <style scoped>
 .box {
   background-color: #fff;
-  box-shadow: 4px 4px 4px -6px rgba(0,0,0,0.65)
+  box-shadow: 9px 10px 10px -8px rgba(0,0,0,0.34);
 }
 </style>
