@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <ul>
-        <li v-for="(option, index) in options" :key="index">
+        <li v-for="(option, index) in options" :key="index" @click="$emit('answer', option)">
           <span class="label">{{ option.label }}</span>
           <span class="value">{{ option.value }} {{ option.unit }}</span>
         </li>
