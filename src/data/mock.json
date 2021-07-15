@@ -1,6 +1,7 @@
 {
   "sectors":[
     {
+      "id": 16,
       "name":"Wüste",
       "attributes": [
         {
@@ -66,6 +67,7 @@
       ]
     },
     {
+      "id": 3,
       "name":"Westerberg",
       "attributes": [
         {
@@ -131,6 +133,7 @@
       ]
     },
     {
+      "id": 11,
       "name":"Widukindland",
       "attributes": [
         {
