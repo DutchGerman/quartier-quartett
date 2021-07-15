@@ -3,7 +3,7 @@
 ## Start
 
 ```
-npm server 
+npm serve
 # OR
 yarn serve
 ```
