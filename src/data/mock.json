@@ -13,7 +13,7 @@
         "label": "Mock 2",
         "value": 555,
         "unit": "L",
-        "winCondition": "higher"
+        "winCondition": "lower"
       },
       {
         "label": "Mock 3",
