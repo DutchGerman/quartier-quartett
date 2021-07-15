@@ -1,6 +1,9 @@
 <template>
   <div class="game">
-     <box>Game view ?</box>
+     <box class="game-field">
+       <h2>Example Eva Icon</h2>
+       <eva-icon name="github" animation="pulse" fill="limegreen"></eva-icon>
+     </box>
   </div>
 </template>
 
@@ -23,5 +26,10 @@ export default class Play extends Vue {}
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.game-field {
+  padding: 15px;
+  text-align: center;
 }
 </style>
