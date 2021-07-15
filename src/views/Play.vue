@@ -1,12 +1,10 @@
 <template>
-  <div class="home">
-    <box class="start">
-      Hello
-    </box>
+  <div class="game">
+     <box>Game view ?</box>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Vue } from 'vue-property-decorator';
 import Box from '@/components/Box.vue';
 
@@ -15,21 +13,15 @@ import Box from '@/components/Box.vue';
     Box
   },
 })
-export default class Home extends Vue {}
+export default class Play extends Vue {}
 </script>
 
-<style lang="css" scoped>
-.home {
+<style lang='css' scoped>
+.game {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.start {
-  width: 660px;
-  height: auto;
-  min-height: 400px;
 }
 </style>
