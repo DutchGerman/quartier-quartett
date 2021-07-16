@@ -1,6 +1,7 @@
 <template>
   <div class="game">
     <box class="game-field">
+
       <!-- TODO: move to sepearte component when the store is finished  -->
       <h2>Runde {{ rounds.current }} von {{ rounds.max }}</h2>
 
@@ -21,26 +22,37 @@
               width="64px"
               height="64px"
             />
-            <span class="pc-score score-number">{{ score.player }}</span>
+            <span class="pc-score score-number">{{ score.pc }}</span>
           </div>
         </div>
       </div>
+      
+      <div v-if="roundState" class="round-state">
+        <h1 v-if="roundState === 'won'" class="won">Gewonnen!</h1>
+        <h1 v-if="roundState === 'lost'" class="lost">Verloren!</h1>
+      </div>
+
       <div class="grid">
         <div class="player">
-          <card :district="options" @answer="answer" />
+          <card :district="options" @answer="answer" class="card-animation" :class="recard && 'recard'" :highlight="highlight" />
         </div>
         <div class="pc">
           <!-- TODO: create district for pc -->
-          <flip-card :district="options" :flip="flip" />
+          <flip-card :district="optionsPc" :district-label="districtLabel" :flip="flip" :highlight="highlight" />
         </div>
       </div>
       <!-- TODO: Set next round -->
-      <button v-if="flip" @click="flip = false">Nachste Runde!</button>
+      <!--  -->
+      <div class="footer">
+        <button v-if="flip" @click="nextRound">
+          {{ buttonText }}
+        </button>
+      </div>
     </box>
   </div>
 </template>
 
-<script>
+<script >
 import json from '@/data/mock.json';
 import Box from '@/components/Box.vue';
 import Card from '@/components/Card.vue';
@@ -57,6 +69,12 @@ export default {
   data() {
     return {
       flip: false,
+      recard: false,
+      roundState: null,
+      highlight: {
+        label: null,
+        state: null
+      },
       sectionPlayer: null, 
       sectionRoundsPc: [],
       allOptions: [],
@@ -72,22 +90,65 @@ export default {
     }
   },
   computed: {
+    buttonText () {
+      return (this.rounds.current === this.rounds.max) ? 'Spiel Beenden.' : 'Nächste Runde!' 
+    },
+    districtLabel () {
+      return this.sectionPc?.name 
+    },
     sectionPc() {
-      return this.sectionRoundsPc[this.rounds.current]
+      return this.sectionRoundsPc[this.rounds.current-1]
+    },
+    optionsPc() {
+      return this.options.map( item => {
+        return { 
+          ...item,
+          value: json.find(a => a.id === this.sectionPc.id).attributes.find(b => b.label === item.label).value
+        } 
+      });
     }
   },
   methods: {
-    suffleDeck() {
+    shuffleDeck() {
       this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
     },
     answer(option) {
-      this.flip = true;
-      const attrs = json.filter(item => item.id === this.sectionPc.id)[0].attributes 
-      const pcVal = attrs.filter(item => item.label === option.label)[0].value
-      if (option.value > pcVal) {
-        console.log('CORRECT')
+      if(!this.flip) { 
+        
+        this.flip = true;
+        const attrs = json.filter(item => item.id === this.sectionPc.id)[0].attributes 
+        const pcVal = attrs.filter(item => item.label === option.label)[0].value
+        
+        if ((option.winCondition === 'higher' && option.value > pcVal) || 
+            (option.winCondition === 'lower' && option.value < pcVal)) {
+          this.roundState = 'won'
+          this.highlight = { label: option.label, state: 'won' };
+          this.score.player++;
+        } else {
+          this.roundState = 'lost'
+          this.highlight = { label: option.label, state: 'lost' };
+          this.score.pc++;
+        }
+        
+      }
+    },
+    nextRound() {
+      if(this.rounds.max !== this.rounds.current) {
+        this.recard = true;
+        setTimeout(() => {
+          this.recard = false;
+          this.flip = false;
+          this.roundState = null;
+          this.highlight = {
+            label: null,
+            state: null
+          };
+          this.rounds.current++;
+          this.shuffleDeck();
+        }, 1000);
+        
       } else {
-        console.log('INCORRECT')
+        this.$router.push({ name: 'Home' });
       }
     }
   },
@@ -130,6 +191,7 @@ export default {
   width: 900px;
   min-height: 600px;
   padding-bottom: 25px;
+  overflow: hidden;
 }
 
 .game-field h2 {
@@ -180,5 +242,45 @@ export default {
 .grid .pc {
   display: flex;
   justify-content: center;
+}
+
+.round-state {
+  position: absolute;
+  display: flex;
+  width: 900px;
+  justify-content: center;
+  z-index: 4;
+  margin-top: -95px;
+}
+
+.round-state h1 {
+  text-align: center;
+  width: 300px;
+  background-color: #F3F3F3;
+  padding: 15px;
+}
+
+.round-state h1.won {
+  color: #0d9d19;
+}
+
+.round-state h1.lost {
+  color: #c1121f;
+}
+
+.footer {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card-animation {
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+.recard {
+  margin-left: -800px;
 }
 </style>
