@@ -6,19 +6,14 @@
     </div>
     <div class="content">
       <ul>
-        <li v-for="(attribute, index) in district.attributes" :key="index">
-          <span class="label"
-            >{{ attribute.label }}
+        <li v-for="(attribute, index) in district" :key="index" @click="$emit('answer', attribute)">
+          <span class="label">{{ attribute.label }}
             <eva-icon
-              :name="
-                attribute.winCondition == 'higher'
-                  ? 'arrow-ios-upward-outline'
-                  : 'arrow-ios-downward-outline'
-              "
+              :name="attribute.winCondition === 'higher' ? 'arrow-ios-upward-outline' : 'arrow-ios-downward-outline'"
               fill="#515151"
               width="12px"
-              height="12px"
-          /></span>
+              height="12px"/>
+          </span>
           <span class="value">{{ attribute.value }} {{ attribute.unit }}</span>
         </li>
       </ul>

@@ -27,15 +27,15 @@
       </div>
       <div class="grid">
         <div class="player">
-          <card :district="district" />
+          <card :district="options" @answer="answer" />
         </div>
         <div class="pc">
           <!-- TODO: create district for pc -->
-          <flip-card :district="district" :flip="flip" />
+          <flip-card :district="options" :flip="flip" />
         </div>
       </div>
-
-      <button @click="flip = !flip">Flip</button>
+      <!-- TODO: Set next round -->
+      <button v-if="flip" @click="flip = false">Nachste Runde!</button>
     </box>
   </div>
 </template>
@@ -81,6 +81,7 @@ export default {
       this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
     },
     answer(option) {
+      this.flip = true;
       const attrs = json.filter(item => item.id === this.sectionPc.id)[0].attributes 
       const pcVal = attrs.filter(item => item.label === option.label)[0].value
       if (option.value > pcVal) {
