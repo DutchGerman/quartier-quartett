@@ -17,7 +17,7 @@
               width="12px"
               height="12px"/>
           <span class="label">{{ attribute.label }}</span>
-          <span class="value">{{ attribute.value }} {{ attribute.unit }}</span>
+          <span class="value">{{ +parseFloat(attribute.value).toFixed(2) }} {{ attribute.unit }}</span>
         </li>
       </ul>
     </div>
