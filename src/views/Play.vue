@@ -56,9 +56,14 @@
       <!-- TODO: Set next round -->
       <!--  -->
       <div class="footer">
-        <button v-if="flip" @click="nextRound">
-          {{ buttonText }}
-        </button>
+        <template v-if="flip">
+          <button v-if="rounds.current !== rounds.max" @click="nextRound">
+            Nächste Runde!
+          </button>
+          <button v-else @click="nextRound">
+            {{ buttonText }}
+          </button>
+        </template>
       </div>
     </box>
   </div>
@@ -104,7 +109,7 @@ export default {
   },
   computed: {
     buttonText () {
-      return (this.rounds.current === this.rounds.max) ? 'Spiel Beenden.' : 'Nächste Runde!' 
+      return (this.score.player > this.score.pc) ? 'Neus Spiel!' : 'Schade! Nochmal Versuchen' 
     },
     districtLabelPc () {
       return this.sectionPc?.name 
@@ -143,6 +148,12 @@ export default {
           this.roundState = 'lost'
           this.highlight = { label: option.label, state: 'lost' };
           this.score.pc++;
+        }
+
+        if(this.rounds.max === this.rounds.current) {
+          if(this.score.player > this.score.pc) {
+            this.$confetti.start();
+          }
         }
       }
     },
@@ -187,7 +198,10 @@ export default {
     // Suffle deck
     this.allOptions = itemsForPlayer.map(item => item.attributes)[0]
     this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
-  }
+  },
+  destroyed() {
+    this.$confetti.stop()
+  },
 }
 
 </script>
@@ -289,6 +303,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 35px;
 }
 
 .card-animation {
@@ -298,4 +313,22 @@ export default {
 .recard {
   margin-left: -800px;
 }
+
+.footer button {
+  border: 1px solid #fff;
+  background-color: #ffb41f;
+  padding: 10px 30px;
+  color: #fff;
+  font-size: 28px;
+  font-family: 'Rubik', sans-serif;
+  text-decoration: none;
+  margin-left: -15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.footer button:hover {
+  background-color: rgb(209, 151, 36);
+}
+
 </style>
