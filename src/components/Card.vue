@@ -1,14 +1,14 @@
 <template>
   <box class="card">
     <div class="header">
-      <img src="http://placehold.it/275x200" />
+      <img :src="'assets/' + district.id + '.jpg'" />
       <div class="district-name">{{ district.name }}</div>
     </div>
     <div class="content">
       <ul :class="pc ? 'pc' : 'player'">
-        <li 
-          v-for="(attribute, index) in district" 
-          :key="index" 
+        <li
+          v-for="(attribute, index) in district"
+          :key="index"
           :class="(attribute.label === highlight.label) && highlight.state"
           @click="$emit('answer', attribute)">
           <span class="label">{{ attribute.label }}
@@ -38,7 +38,7 @@ import { District } from "@/data/district";
 export default class Card extends Vue {
   @Prop() private district!: District;
   @Prop() private pc!: boolean;
-  @Prop() private highlight!: Record<string, unknown>; // TODO write interface  
+  @Prop() private highlight!: Record<string, unknown>; // TODO write interface
 }
 </script>
 
