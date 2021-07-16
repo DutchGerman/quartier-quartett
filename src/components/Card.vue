@@ -1,8 +1,8 @@
 <template>
   <box class="card">
     <div class="header">
-      <img :src="'assets/' + district.id + '.jpg'" />
-      <div class="district-name">{{ district.name }}</div>
+      <img :src="'images/' + districtData.id + '.jpg'" />
+      <div class="district-name">{{ districtData.name }}</div>
     </div>
     <div class="content">
       <ul :class="pc ? 'pc' : 'player'">
@@ -11,13 +11,12 @@
           :key="index"
           :class="(attribute.label === highlight.label) && highlight.state"
           @click="$emit('answer', attribute)">
-          <span class="label">{{ attribute.label }}
             <eva-icon
               :name="attribute.winCondition === 'higher' ? 'arrow-ios-upward-outline' : 'arrow-ios-downward-outline'"
               fill="#515151"
               width="12px"
               height="12px"/>
-          </span>
+          <span class="label">{{ attribute.label }}</span>
           <span class="value">{{ attribute.value }} {{ attribute.unit }}</span>
         </li>
       </ul>
@@ -37,6 +36,7 @@ import { District } from "@/data/district";
 })
 export default class Card extends Vue {
   @Prop() private district!: District;
+  @Prop() private districtData!: Record<string, unknown>; // Todo: merge all in disctrict
   @Prop() private pc!: boolean;
   @Prop() private highlight!: Record<string, unknown>; // TODO write interface
 }
@@ -48,14 +48,24 @@ export default class Card extends Vue {
   border: 10px solid #ffc947;
   border-radius: 15px;
   width: 275px;
-  height: 390px;
+  /* height: 390px; */
+  height: auto;
   padding-bottom: 15px;
 }
 
 .header {
-  background-color: #ffc947;
+  background-color: #fff;
   z-index: 3;
   position: relative;
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(255,201,71,1) 52%, rgba(255,210,102,1) 100%, rgba(255,255,255,1) 100%); 
+}
+
+.header img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  width: 275px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .district-name {
@@ -63,6 +73,9 @@ export default class Card extends Vue {
   bottom: 0;
   right: 0;
   padding: 12px;
+  color: #fff;
+  text-shadow: 1px ;
+
 }
 
 
@@ -82,11 +95,6 @@ export default class Card extends Vue {
   background-color: #caf2ca;
 }
 
-img {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
 .content {
   background-color: #fff;
   margin-top: -5px;
@@ -104,7 +112,7 @@ li {
   font-size: 13px;
   margin: 0;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 24px auto 30%;
   border-bottom: 1px solid #cecece;
   padding: 7px 15px 7px 15px;
 }

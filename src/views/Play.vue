@@ -33,11 +33,24 @@
 
       <div class="grid">
         <div class="player">
-          <card :district="options" @answer="answer" class="card-animation" :class="recard && 'recard'" :highlight="highlight" />
+          <card 
+            :district="options" 
+            :district-data="sectionPlayerObject"
+            :highlight="highlight" 
+            :class="recard && 'recard'" 
+            class="card-animation" 
+            @answer="answer" 
+          />
         </div>
         <div class="pc">
           <!-- TODO: create district for pc -->
-          <flip-card :district="optionsPc" :district-label="districtLabel" :flip="flip" :highlight="highlight" />
+          <flip-card 
+            :district="optionsPc" 
+            :district-label="districtLabelPc" 
+            :district-id="districtIdPc" 
+            :flip="flip" 
+            :highlight="highlight" 
+          />
         </div>
       </div>
       <!-- TODO: Set next round -->
@@ -75,6 +88,7 @@ export default {
         state: null
       },
       sectionPlayer: null, 
+      sectionPlayerObject: {},
       sectionRoundsPc: [],
       allOptions: [],
       rounds: {
@@ -92,8 +106,11 @@ export default {
     buttonText () {
       return (this.rounds.current === this.rounds.max) ? 'Spiel Beenden.' : 'Nächste Runde!' 
     },
-    districtLabel () {
+    districtLabelPc () {
       return this.sectionPc?.name 
+    },
+    districtIdPc () {
+      return this.sectionPc?.id 
     },
     sectionPc() {
       return this.sectionRoundsPc[this.rounds.current-1]
@@ -166,6 +183,7 @@ export default {
     }
     this.sectionRoundsPc = randomParts
 
+    this.sectionPlayerObject = { id: itemsForPlayer[0].id, name: itemsForPlayer[0].name }
     // Suffle deck
     this.allOptions = itemsForPlayer.map(item => item.attributes)[0]
     this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
