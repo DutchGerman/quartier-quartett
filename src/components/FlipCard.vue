@@ -8,7 +8,7 @@
         </box>
       </div>
       <div class="flip-card-back">
-        <card :district="district" :highlight="highlight" :pc="true" />
+        <card :district="district" :district-data="{ name: districtLabel, id: districtId }" :highlight="highlight" :pc="true" />
       </div>
     </div>
   </div>
@@ -32,6 +32,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class FlipCard extends Vue {
   @Prop() private district!: District;
   @Prop() private districtLabel!: string;
+  @Prop() private districtId!: number;
   @Prop() private highlight!: Record<string, unknown>; // TODO write interface  
   @Prop() private flip!: boolean;
 }
