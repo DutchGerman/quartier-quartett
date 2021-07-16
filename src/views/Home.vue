@@ -54,7 +54,7 @@ h2 {
 
 .start {
   width: 660px;
-  height: auto;
+  height: 450px;
   min-height: 400px;
 }
 
@@ -82,13 +82,18 @@ h2 {
 }
 
 .start-button {
+  border: 1px solid #fff;
   background-color: #ffb41f;
-  padding: 5px 30px;
+  padding: 10px 30px;
   color: #fff;
-  font-size: 27px;
+  font-size: 28px;
   font-family: 'Rubik', sans-serif;
   text-decoration: none;
-  font-weight: 900;
+  margin-left: -15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .start-button:hover {
