@@ -10,7 +10,7 @@ Das Spiel kennt man vielleicht auch als "Supertrumpf" – gespielt wird es häuf
 
 Unser Spiel kann man hier ausprobieren: [https://kurzelinks.de/os](https://kurzelinks.de/os).
 
-## Start
+## Über das Projekt
 
 Dieses Quartett entstand im Juli 2021 beim [Osnahack](https://osnahack.de) der [Stadtwerke Osnabrück](https://www.stadtwerke-osnabrueck.de).
 
@@ -26,7 +26,7 @@ Die verwendeten Daten liegen im Ordner `data_sourcing` als Excel-Tabelle. Sie we
 2. In den Zeilen werden die Themen abgebildet, die Werte der Stadtteile sind jeweils in einer Spalte. Die letzten 23 Spalten dürfen nur die Stadtteile enthalten. Damit sind die Spalten wie folgt strukturiert:
     * **Thema:** Kurze Beschreibung des Themas, maximal 21 Zeichen.
     * **WinCondition:** Gibt an, ob die höhere oder die niedrigere Zahl gewinnt.
-    * ... und dann die 23 Stadtteile als Spalten: Innenstadt, Weststadt, Westerberg, Eversburg, Hafen, Sonnenhügel, Haste, Dodesheide, Gartlage, Schinkel, Widukindland, Schinkel-Ost, Fledder, Schölerberg, Kalkhügel, Wüste, Sutthausen, Hellern, Atter, Pye, Darum-Gretesch-Lüstringen, Voxtrup, Nahne
+    * ... und dann die **23 Stadtteile** als Spalten: Innenstadt, Weststadt, Westerberg, Eversburg, Hafen, Sonnenhügel, Haste, Dodesheide, Gartlage, Schinkel, Widukindland, Schinkel-Ost, Fledder, Schölerberg, Kalkhügel, Wüste, Sutthausen, Hellern, Atter, Pye, Darum-Gretesch-Lüstringen, Voxtrup, Nahne
 
 ## Fotos
 
