@@ -1,7 +1,6 @@
 <template>
   <div class="game">
     <box class="game-field">
-
       <!-- TODO: move to sepearte component when the store is finished  -->
       <h2>Runde {{ rounds.current }} von {{ rounds.max }}</h2>
 
@@ -53,7 +52,7 @@
 </template>
 
 <script >
-import json from '@/data/mock.json';
+import json from '@/data/gamedata.json';
 import Box from '@/components/Box.vue';
 import Card from '@/components/Card.vue';
 import FlipCard from '@/components/FlipCard.vue';
@@ -114,7 +113,6 @@ export default {
     },
     answer(option) {
       if(!this.flip) { 
-        
         this.flip = true;
         const attrs = json.filter(item => item.id === this.sectionPc.id)[0].attributes 
         const pcVal = attrs.filter(item => item.label === option.label)[0].value
@@ -129,7 +127,6 @@ export default {
           this.highlight = { label: option.label, state: 'lost' };
           this.score.pc++;
         }
-        
       }
     },
     nextRound() {
@@ -155,7 +152,8 @@ export default {
   mounted() {
 
    // Start game:
-    this.sectionPlayer = 16 // Todo: Change to selector prop from Home
+    this.sectionPlayer = this.$store.state.district ?? Math.floor(Math.random() * 23) + 1;
+
     const sectors = json
     const shuffled = sectors.sort(() => Math.random() - 0.5)
     const itemsForPc = shuffled.filter(item => item.id != this.sectionPlayer)
@@ -171,7 +169,6 @@ export default {
     // Suffle deck
     this.allOptions = itemsForPlayer.map(item => item.attributes)[0]
     this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
-
   }
 }
 
