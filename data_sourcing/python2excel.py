@@ -10,7 +10,7 @@ import json
 
 # read dataframe
 df = pd.read_excel("Quartier-Quartett.xlsx", 
-                   sheet_name=1, 
+                   sheet_name='spieldaten', 
                    na_values="-", 
                    parse_dates = [0],
                    index_col=0)
@@ -21,6 +21,7 @@ stadtteile = df.columns[-23:]
 # fill empty values with empty strings
 df = df.fillna("")
 
+labels = df.index
 # create list with 23 elements containing attributes for each district
 quartiere = []
 for stadtteil in stadtteile:
