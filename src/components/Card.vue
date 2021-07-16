@@ -5,8 +5,12 @@
       <div class="district-name">{{ district.name }}</div>
     </div>
     <div class="content">
-      <ul>
-        <li v-for="(attribute, index) in district" :key="index" @click="$emit('answer', attribute)">
+      <ul :class="pc ? 'pc' : 'player'">
+        <li 
+          v-for="(attribute, index) in district" 
+          :key="index" 
+          :class="(attribute.label === highlight.label) && highlight.state"
+          @click="$emit('answer', attribute)">
           <span class="label">{{ attribute.label }}
             <eva-icon
               :name="attribute.winCondition === 'higher' ? 'arrow-ios-upward-outline' : 'arrow-ios-downward-outline'"
@@ -33,6 +37,8 @@ import { District } from "@/data/district";
 })
 export default class Card extends Vue {
   @Prop() private district!: District;
+  @Prop() private pc!: boolean;
+  @Prop() private highlight!: Record<string, unknown>; // TODO write interface  
 }
 </script>
 
@@ -57,6 +63,23 @@ export default class Card extends Vue {
   bottom: 0;
   right: 0;
   padding: 12px;
+}
+
+
+.player .won {
+  background-color: #caf2ca;
+}
+
+.player .lost {
+  background-color: #ffdada;
+}
+
+.pc .won {
+  background-color: #ffdada;
+}
+
+.pc .lost {
+  background-color: #caf2ca;
 }
 
 img {
