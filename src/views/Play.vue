@@ -25,7 +25,6 @@
           </div>
         </div>
       </div>
-
       <div class="grid">
         <div class="player">
           <card :district="district" />
@@ -41,40 +40,26 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Box from "@/components/Box.vue";
-import Card from "@/components/Card.vue";
-import FlipCard from "@/components/FlipCard.vue";
-import mockData from "@/data/mock.json";
-import { District } from "@/data/district";
+<script>
+import json from '@/data/mock.json';
+import Box from '@/components/Box.vue';
+import Card from '@/components/Card.vue';
+import FlipCard from '@/components/FlipCard.vue';
 
-declare interface Rounds {
-  current: number;
-  max: number;
-}
-
-declare interface Score {
-  player: number;
-  pc: number;
-}
-
-declare interface PlayData {
-  flip: boolean;
-  rounds: Rounds;
-  score: Score;
-  district: District;
-}
-
-@Component({
+// Todo Typescript this
+export default {
+  name: "Play",
   components: {
     Box,
     Card,
     FlipCard,
   },
-  data(): PlayData {
+  data() {
     return {
       flip: false,
+      sectionPlayer: null, 
+      sectionRoundsPc: [],
+      allOptions: [],
       rounds: {
         current: 1,
         max: 7,
@@ -83,14 +68,51 @@ declare interface PlayData {
         player: 0,
         pc: 0,
       },
-      district: mockData[0] as District,
-    };
+      options: []
+    }
+  },
+  computed: {
+    sectionPc() {
+      return this.sectionRoundsPc[this.rounds.current]
+    }
+  },
+  methods: {
+    suffleDeck() {
+      this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
+    },
+    answer(option) {
+      const attrs = json.filter(item => item.id === this.sectionPc.id)[0].attributes 
+      const pcVal = attrs.filter(item => item.label === option.label)[0].value
+      if (option.value > pcVal) {
+        console.log('CORRECT')
+      } else {
+        console.log('INCORRECT')
+      }
+    }
   },
   mounted() {
-    /* Inform the store to create cards for the rounds */
-  },
-})
-export default class Play extends Vue {}
+
+   // Start game:
+    this.sectionPlayer = 16 // Todo: Change to selector prop from Home
+    const sectors = json
+    const shuffled = sectors.sort(() => Math.random() - 0.5)
+    const itemsForPc = shuffled.filter(item => item.id != this.sectionPlayer)
+    const itemsForPlayer = shuffled.filter(item => item.id === this.sectionPlayer )
+
+    // Get random cityparts per round
+    const randomParts = []
+    for (let index = 0; index < this.rounds.max; index++) {
+      randomParts[index] = itemsForPc[Math.floor(Math.random()*itemsForPc.length)];
+    }
+    this.sectionRoundsPc = randomParts
+
+    // Suffle deck
+    this.allOptions = itemsForPlayer.map(item => item.attributes)[0]
+    this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
+
+  }
+}
+
 </script>
 
 <style lang='css' scoped>
