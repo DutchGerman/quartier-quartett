@@ -10,6 +10,10 @@
       <div class="button-wrapper">
         <router-link class="start-button" :to="{ name: 'Play' }">LOS!</router-link>
       </div>
+      <div class="menu">
+        <router-link :to="{ name: 'Readme' }"> Readme </router-link>
+        <router-link :to="{ name: 'Rules' }"> Spielanweisung </router-link>
+      </div>
     </box>
   </div>
 </template>
@@ -85,5 +89,26 @@ h2 {
 
 .start-button:hover {
   background-color: rgb(209, 151, 36);
+}
+
+.menu {
+  position: absolute;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.menu a {
+  display: inline-block;
+  margin-right: 15px;
+  background-color: #255f85;
+  color: #fff;
+  padding: 15px 0;
+  text-decoration: none;
+  text-align: center;
+  width: 150px;
+}
+
+.menu a:hover { 
+  background-color: #457a9e;
 }
 </style>
