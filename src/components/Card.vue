@@ -57,7 +57,7 @@ export default class Card extends Vue {
   background-color: #fff;
   z-index: 3;
   position: relative;
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(255,201,71,1) 52%, rgba(255,210,102,1) 100%, rgba(255,255,255,1) 100%); 
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(255,201,71,1) 52%, rgba(255,210,102,1) 100%, rgba(255,255,255,1) 100%);
 }
 
 .header img {
@@ -73,9 +73,21 @@ export default class Card extends Vue {
   bottom: 0;
   right: 0;
   padding: 12px;
-  color: #fff;
+  color: #000;
   text-shadow: 1px ;
+  background-color: white;
+}
 
+.district-name:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 46px 46px 0px 0px;
+  border-color: transparent #fff transparent transparent;
+  position: absolute;
+  bottom: 0px;
+  margin-left: -58px;
 }
 
 
