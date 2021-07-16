@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- TODO: sidebar nav ? -->
-      <router-link :to="{ name: 'Home' }">Landing page</router-link> |
-      <router-link :to="{ name: 'Play' }">Start Route</router-link>
-    </div>
+
     <router-view/>
   </div>
 </template>
@@ -31,8 +27,5 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
 }
 
-#nav {
-  position: fixed;
-}
 </style>
 
