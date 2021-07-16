@@ -52,7 +52,7 @@
 </template>
 
 <script >
-import json from '@/data/mock.json';
+import json from '@/data/gamedata.json';
 import Box from '@/components/Box.vue';
 import Card from '@/components/Card.vue';
 import FlipCard from '@/components/FlipCard.vue';
