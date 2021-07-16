@@ -1,0 +1,236 @@
+[
+  {
+    "id": 16,
+    "name": "Wüste",
+    "attributes": [
+      {
+        "label": "Mock 1",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 2",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "lower"
+      },
+      {
+        "label": "Mock 3",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 4",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 5",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 6",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 7",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 8",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 9",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 10",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 11",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 12",
+        "value": 555,
+        "unit": "L",
+        "winCondition": "higher"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Westerberg",
+    "attributes": [
+      {
+        "label": "Mock 1",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 2",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 3",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 4",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 5",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 6",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 7",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 8",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 9",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 10",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 11",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 12",
+        "value": 123,
+        "unit": "L",
+        "winCondition": "higher"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Widukindland",
+    "attributes": [
+      {
+        "label": "Mock 1",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 2",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 3",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 4",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 5",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 6",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 7",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 8",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 9",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 10",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 11",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      },
+      {
+        "label": "Mock 12",
+        "value": 234,
+        "unit": "L",
+        "winCondition": "higher"
+      }
+    ]
+  }
+]
