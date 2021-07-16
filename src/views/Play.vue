@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     shuffleDeck() {
-      this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
+      this.options = this.allOptions.map((a) => ({sort: Math.random(), value: a})).sort((a, b) => a.sort - b.sort).map((a) => a.value).slice(0,5)
     },
     answer(option) {
       if(!this.flip) { 
@@ -184,7 +184,7 @@ export default {
 
     const sectors = json
     const shuffled = sectors.sort(() => Math.random() - 0.5)
-    const itemsForPc = shuffled.filter(item => item.id != this.sectionPlayer)
+    const itemsForPc = shuffled.filter(item => item.id !== this.sectionPlayer)
     const itemsForPlayer = shuffled.filter(item => item.id === this.sectionPlayer )
 
     // Get random cityparts per round
@@ -197,10 +197,11 @@ export default {
     this.sectionPlayerObject = { id: itemsForPlayer[0].id, name: itemsForPlayer[0].name }
     // Suffle deck
     this.allOptions = itemsForPlayer.map(item => item.attributes)[0]
-    this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
+    this.options = this.allOptions.map((a) => ({sort: Math.random(), value: a})).sort((a, b) => a.sort - b.sort).map((a) => a.value).slice(0,5)
   },
   destroyed() {
     this.$confetti.stop()
+    this.$store.state.district = null;
   },
 }
 
