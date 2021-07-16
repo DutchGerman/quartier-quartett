@@ -1,39 +1,42 @@
 <template>
   <div class="game">
-     <box class="game-field">
-        <!-- TODO: move to sepearte component when the store is finished  -->
-        <h2>Runde {{ rounds.current }} von {{ rounds.max }}</h2>
-      
-        <!-- TODO: move to scoring component -->
-        <div class="score">
-          <div class="player">
-            <div class="icon-wrapper">
-              <eva-icon name="person" fill="#515151" width="64px" height="64px" />
-              <span class="player-score score-number">{{ score.player }}</span>
-            </div>
-          </div>
-          <div class="seperator"> : </div>
-          <div class="pc">
-            <div class="icon-wrapper">
-              <eva-icon name="monitor-outline" fill="#515151" width="64px" height="64px" />
-              <span class="pc-score score-number">{{ score.player }}</span>
-            </div>
+    <box class="game-field">
+      <!-- TODO: move to sepearte component when the store is finished  -->
+      <h2>Runde {{ rounds.current }} von {{ rounds.max }}</h2>
+
+      <!-- TODO: move to scoring component -->
+      <div class="score">
+        <div class="player">
+          <div class="icon-wrapper">
+            <eva-icon name="person" fill="#515151" width="64px" height="64px" />
+            <span class="player-score score-number">{{ score.player }}</span>
           </div>
         </div>
-
-        <div class="grid">
-          <div class="player">
-            <card :options="options" @answer="answer" />
-          </div>
-          <div class="pc">
-            <!-- TODO: create options for pc -->
-            <flip-card :options="options" :flip="flip" />
+        <div class="seperator">:</div>
+        <div class="pc">
+          <div class="icon-wrapper">
+            <eva-icon
+              name="monitor-outline"
+              fill="#515151"
+              width="64px"
+              height="64px"
+            />
+            <span class="pc-score score-number">{{ score.player }}</span>
           </div>
         </div>
-        <button @click="flip = !flip">Flip</button> 
+      </div>
+      <div class="grid">
+        <div class="player">
+          <card :district="district" />
+        </div>
+        <div class="pc">
+          <!-- TODO: create district for pc -->
+          <flip-card :district="district" :flip="flip" />
+        </div>
+      </div>
 
-        <button @click="suffleDeck"> Suffle </button>
-     </box>
+      <button @click="flip = !flip">Flip</button>
+    </box>
   </div>
 </template>
 
@@ -49,7 +52,7 @@ export default {
   components: {
     Box,
     Card,
-    FlipCard
+    FlipCard,
   },
   data() {
     return {
@@ -59,11 +62,11 @@ export default {
       allOptions: [],
       rounds: {
         current: 1,
-        max: 7
+        max: 7,
       },
       score: {
         player: 0,
-        pc: 0
+        pc: 0,
       },
       options: []
     }
@@ -78,7 +81,7 @@ export default {
       this.options = this.allOptions.sort(() => Math.random() - 0.5).slice(0, 5)
     },
     answer(option) {
-      const attrs = json.sectors.filter(item => item.id === this.sectionPc.id)[0].attributes 
+      const attrs = json.filter(item => item.id === this.sectionPc.id)[0].attributes 
       const pcVal = attrs.filter(item => item.label === option.label)[0].value
       if (option.value > pcVal) {
         console.log('CORRECT')
@@ -91,7 +94,7 @@ export default {
 
    // Start game:
     this.sectionPlayer = 16 // Todo: Change to selector prop from Home
-    const sectors = json.sectors
+    const sectors = json
     const shuffled = sectors.sort(() => Math.random() - 0.5)
     const itemsForPc = shuffled.filter(item => item.id != this.sectionPlayer)
     const itemsForPlayer = shuffled.filter(item => item.id === this.sectionPlayer )
@@ -130,7 +133,7 @@ export default {
 
 .game-field h2 {
   background-color: #c44536;
-  color: #fff;  
+  color: #fff;
   margin: 0;
   padding: 15px;
 }
@@ -138,7 +141,7 @@ export default {
 .score {
   padding-top: 15px;
   display: grid;
-  grid-template-columns: auto 15px auto; 
+  grid-template-columns: auto 15px auto;
   background-color: #f3f3f3;
 }
 
@@ -160,7 +163,7 @@ export default {
 .score-number {
   font-size: 36px;
   font-weight: bold;
-  display: block; 
+  display: block;
   float: right;
   line-height: 64px;
 }
@@ -168,7 +171,7 @@ export default {
 .grid {
   margin-top: 25px;
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 

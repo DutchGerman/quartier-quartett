@@ -2,12 +2,24 @@
   <box class="card">
     <div class="header">
       <img src="http://placehold.it/275x200" />
+      <div class="district-name">{{ district.name }}</div>
     </div>
     <div class="content">
       <ul>
-        <li v-for="(option, index) in options" :key="index" @click="$emit('answer', option)">
-          <span class="label">{{ option.label }}</span>
-          <span class="value">{{ option.value }} {{ option.unit }}</span>
+        <li v-for="(attribute, index) in district.attributes" :key="index">
+          <span class="label"
+            >{{ attribute.label }}
+            <eva-icon
+              :name="
+                attribute.winCondition == 'higher'
+                  ? 'arrow-ios-upward-outline'
+                  : 'arrow-ios-downward-outline'
+              "
+              fill="#515151"
+              width="12px"
+              height="12px"
+          /></span>
+          <span class="value">{{ attribute.value }} {{ attribute.unit }}</span>
         </li>
       </ul>
     </div>
@@ -15,16 +27,17 @@
 </template>
 
 <script lang="ts">
-import Box from '@/components/Box.vue';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import Box from "@/components/Box.vue";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { District } from "@/data/district";
 
 @Component({
   components: {
-    Box
+    Box,
   },
 })
 export default class Card extends Vue {
-  @Prop() private options!: Record<string, unknown>;
+  @Prop() private district!: District;
 }
 </script>
 
@@ -41,12 +54,20 @@ export default class Card extends Vue {
 .header {
   background-color: #ffc947;
   z-index: 3;
+  position: relative;
+}
+
+.district-name {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 12px;
 }
 
 img {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-} 
+}
 
 .content {
   background-color: #fff;
@@ -67,7 +88,7 @@ li {
   display: grid;
   grid-template-columns: 60% 40%;
   border-bottom: 1px solid #cecece;
-  padding: 7px 15px 7px 15px
+  padding: 7px 15px 7px 15px;
 }
 
 li:hover {
