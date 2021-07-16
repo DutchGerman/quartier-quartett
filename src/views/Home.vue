@@ -2,9 +2,12 @@
   <div class="home">
     <box class="start">
       <h2>OS-City-Quartett</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut euismod hendrerit justo, nec pretium quam condimentum vel. Pellentesque id auctor nunc, in scelerisque nunc. Maecenas vitae pharetra mauris. Curabitur dignissim, tellus vel bibendum dictum, nunc lectus consectetur leo, in pulvinar augue felis at velit. Cras.</p>
+      <div class="introtext">
+        <p><b>Wie gut kennen Sie Osnabrück?</b> <br> Testen Sie Ihr Wissen und entdecken Sie spannende Fakten im Quartett.</p>
+        </div>
+      <p>Das Spielprinzip ist einfach: Die Stadtteile treten gegeneinander an und der bessere gewinnt! Wählen Sie die Zahl, mit der Sie den Stadtteil auf der verdeckten Karte am besten übertrumpfen könnten. Das Ergebnis zeigt, ob Sie recht hatten. Viel Spaß!</p>
       <div class="district-grid">
-        <span>Stadtteil</span>
+        <span>Mit welchem Stadtteil wollen Sie spielen?</span>
         <district-selector class="district" />
       </div>
       <div class="button-wrapper">
@@ -75,16 +78,17 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .start-button {
   background-color: #ffb41f;
   padding: 5px 30px;
   color: #fff;
-  font-size: 48px;
+  font-size: 27px;
   font-family: 'Rubik', sans-serif;
   text-decoration: none;
+  font-weight: 900;
 }
 
 .start-button:hover {
@@ -110,5 +114,9 @@ h2 {
 
 .menu a:hover { 
   background-color: #457a9e;
+}
+
+.introtext p {
+  text-align: center;
 }
 </style>
