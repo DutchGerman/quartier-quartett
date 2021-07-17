@@ -1,6 +1,6 @@
 # OS-City-Quartett
 
-Wie gut kennen Sie Osnabrück? Wir gut kennen wir eigentlich Osnabrück? 
+Wie gut kennen Sie Osnabrück? Wie gut kennen wir eigentlich Osnabrück? 
 
 Das haben wir uns gefragt – und uns überlegt, dass wir viele Fakten, die eigentlich verfügbar sind, gar nicht kennen. Deshalb haben wir überlegt, wie wir miteinander ins Gespräch kommen können. Ein Quartett ist dafür ein super Ansatzpunkt.
 
