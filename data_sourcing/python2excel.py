@@ -9,9 +9,9 @@ import pandas as pd
 import json
 
 # read dataframe
-df = pd.read_excel("Quartier-Quartett.xlsx", 
-                   sheet_name='spieldaten', 
-                   na_values="-", 
+df = pd.read_excel("Quartier-Quartett.xlsx",
+                   sheet_name='spieldaten',
+                   na_values="-",
                    parse_dates = [0],
                    index_col=0)
 
@@ -29,7 +29,7 @@ for stadtteil in stadtteile:
     for label in labels:
         value = df[stadtteil].loc[label]
         unit = df["Einheit"].loc[label]
-        winCondition = "higher"
+        winCondition = df["WinCondition"].loc[label]
         attributes.append(dict({"label": label,
                      "value": value,
                      "unit": unit,
@@ -39,7 +39,7 @@ for stadtteil in stadtteile:
 # create dict
 output = []
 for index, stadtteil in enumerate(stadtteile):
-    output.append(dict({"id": index, 
+    output.append(dict({"id": index,
                   "name": stadtteil,
                   "attributes": quartiere[index]
                        }))

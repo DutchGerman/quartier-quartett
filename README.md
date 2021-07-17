@@ -1,6 +1,6 @@
 # OS-City-Quartett
 
-Wie gut kennen Sie Osnabrück? Wie gut kennen wir eigentlich Osnabrück? 
+Wie gut kennen Sie Osnabrück? Wir gut kennen wir eigentlich Osnabrück?
 
 Das haben wir uns gefragt – und uns überlegt, dass wir viele Fakten, die eigentlich verfügbar sind, gar nicht kennen. Deshalb haben wir überlegt, wie wir miteinander ins Gespräch kommen können. Ein Quartett ist dafür ein super Ansatzpunkt.
 
@@ -24,20 +24,22 @@ Die verwendeten Daten liegen im Ordner `data_sourcing` als Excel-Tabelle. Sie we
 
 1. Es muss ein Sheet mit exakt dem Namen "spieldaten" geben. Aus diesem werden die Daten gelesen.
 2. In den Zeilen werden die Themen abgebildet, die Werte der Stadtteile sind jeweils in einer Spalte. Die letzten 23 Spalten dürfen nur die Stadtteile enthalten. Damit sind die Spalten wie folgt strukturiert:
-    * **Thema:** Kurze Beschreibung des Themas, maximal 21 Zeichen.
-    * **WinCondition:** Gibt an, ob die höhere oder die niedrigere Zahl gewinnt.
-    * ... und dann die **23 Stadtteile** als Spalten: Innenstadt, Weststadt, Westerberg, Eversburg, Hafen, Sonnenhügel, Haste, Dodesheide, Gartlage, Schinkel, Widukindland, Schinkel-Ost, Fledder, Schölerberg, Kalkhügel, Wüste, Sutthausen, Hellern, Atter, Pye, Darum-Gretesch-Lüstringen, Voxtrup, Nahne
+   - **Thema:** Kurze Beschreibung des Themas, maximal 21 Zeichen.
+   - **WinCondition:** Gibt an, ob die höhere oder die niedrigere Zahl gewinnt.
+   - ... und dann die **23 Stadtteile** als Spalten: Innenstadt, Weststadt, Westerberg, Eversburg, Hafen, Sonnenhügel, Haste, Dodesheide, Gartlage, Schinkel, Widukindland, Schinkel-Ost, Fledder, Schölerberg, Kalkhügel, Wüste, Sutthausen, Hellern, Atter, Pye, Darum-Gretesch-Lüstringen, Voxtrup, Nahne
 
 ## Fotos
 
-Die Fotos aus den Stadtteilen wurden uns freundlicherweise von der Stadt Osnabrück zur Verfügung gestellt, aufgenommen haben sie Silke Brickwedde und Nina Hoss.
+Die Fotos aus den Stadtteilen wurden uns freundlicherweise von der Stadt Osnabrück zur Verfügung gestellt, aufgenommen haben sie Silke Brickwedde und Nina Hoss. Einige stammen von verschiedenen Heimatvereinen.
 
 ## So sieht's aus
 
 #### Screenshot der Startseite
+
 ![Screenshot Desktop-Ansicht Startseite](https://raw.githubusercontent.com/DutchGerman/quartier-quartett/main/doc/screenshot-os-city-quartett-startseite.png)
 
 #### Screenshot eines gewonnenen Spielzugs
+
 ![Screenshot Desktop-Ansicht Gewonnen](https://github.com/DutchGerman/quartier-quartett/blob/main/doc/screenshot-os-city-quartett-gewonnen.png)
 
 ## Fehler gefunden?
@@ -52,9 +54,18 @@ Gebaut wurde die Webanwendung mit [vue.js](https://vuejs.org/).
 
 Die Daten können einfach in einem Excel-File abgelegt werden und werden mit einem Python-Skript in das nötige JSON-File mit der korrekten Datenstruktur umgewandelt.
 
+```python
+cd data_sourcing
+pip install -r requirements.txt
+
+python3 python2excel.py
 ```
+
+```bash
+npm install
 npm run serve
 # or
+yarn install
 yarn serve
 ```
 
